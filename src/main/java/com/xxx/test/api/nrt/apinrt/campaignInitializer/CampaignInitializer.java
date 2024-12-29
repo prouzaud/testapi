@@ -1,7 +1,6 @@
 package com.xxx.test.api.nrt.apinrt.campaignInitializer;
 
 import com.xxx.test.api.nrt.apinrt.campaignInitializer.exceptions.TestReaderException;
-import com.xxx.test.api.nrt.apinrt.campaignReporter.exceptions.ReportException;
 import com.xxx.test.api.nrt.apinrt.model.Campaign;
 import com.xxx.test.api.nrt.apinrt.model.Test;
 import com.xxx.test.api.nrt.apinrt.model.TestGroup;
@@ -45,7 +44,7 @@ public class CampaignInitializer {
 
     private String getTestResourcesPath() {
         Path resourceDir = Paths.get("src", "test", "resources");
-        return resourceDir.toAbsolutePath().toString() + "/";
+        return resourceDir.toAbsolutePath() + "/";
     }
 
     private void processFolder(File currentDirectory, Campaign campaign) {

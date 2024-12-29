@@ -8,7 +8,7 @@ public class TestGroupContext {
 
     private final CampaignContext campaignContext;
     private final TestGroup testGroup;
-    private final List<TestContext> testContexts = new ArrayList<TestContext>();
+    private final List<TestContext> testContexts = new ArrayList<>();
 
     public TestGroupContext(CampaignContext campaignContext, TestGroup testGroup) {
         this.campaignContext = campaignContext;
@@ -29,9 +29,5 @@ public class TestGroupContext {
 
     public boolean isStatus() {
         return testContexts.stream().allMatch(TestContext::isStatus);
-    }
-
-    public List<TestContext> getTestsFailed() {
-        return  testContexts.stream().filter(testContext -> !testContext.isStatus()).toList();
     }
 }

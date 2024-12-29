@@ -50,6 +50,7 @@ public class ApiCaller {
                 buildBody(settings.body()),
                 String.class);
             var duration = ChronoUnit.MILLIS.between(LocalDateTime.now(), beginInstant);
+            testContext.setDurationInMilliseconds(duration);
             reporter.apiCallDone(testContext);
         } catch (Exception exception) {
             reporter.apiCallFails(testContext, exception);

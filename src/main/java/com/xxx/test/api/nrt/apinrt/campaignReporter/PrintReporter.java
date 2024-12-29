@@ -85,7 +85,6 @@ public class PrintReporter implements Reporter {
 
     @Override
     public void testFinished(TestContext testContext) {
-        Test test = testContext.getTest();
         logger.logMessage(4,"The test execution is finished.");
         logger.logMessage(4,"Its status is: " +formatStatus(testContext.isStatus()));
         logger.logMessage(2,"----------------------------------");
@@ -100,7 +99,6 @@ public class PrintReporter implements Reporter {
 
     @Override
     public void apiCallDone(TestContext testContext) {
-        Test test = testContext.getTest();
         logger.logMessage(6,"The API call has succeed.");
     }
 

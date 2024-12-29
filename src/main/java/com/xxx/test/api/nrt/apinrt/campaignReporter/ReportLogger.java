@@ -73,14 +73,6 @@ public class ReportLogger {
         write(CHAR_NEW_LINE);
     }
 
-    public void finish() {
-        try {
-            writer.close();
-        } catch (IOException e) {
-            throw new ReportException("Error when closing the log file ("+reportPath.getAbsolutePath()+")", e);
-        }
-    }
-
     private String formatCurrentDate() {
         return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }

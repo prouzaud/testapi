@@ -8,7 +8,7 @@ public class TestContext {
     private final Test test;
     private boolean status = true;
     private int httpStatusCode;
-    private int durationInMilliseconds;
+    private long durationInMilliseconds;
 
     public TestContext(TestGroupContext testGroupContext, Test test) {
         this.testGroupContext = testGroupContext;
@@ -39,11 +39,11 @@ public class TestContext {
         this.httpStatusCode = httpStatusCode;
     }
 
-    public int getDurationInMilliseconds() {
+    public long getDurationInMilliseconds() {
         return durationInMilliseconds;
     }
 
-    public void setDurationInMilliseconds(int durationInMilliseconds) {
+    public void setDurationInMilliseconds(long durationInMilliseconds) {
         this.durationInMilliseconds = durationInMilliseconds;
     }
 }
