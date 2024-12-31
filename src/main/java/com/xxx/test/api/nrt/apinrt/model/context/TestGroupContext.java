@@ -1,6 +1,6 @@
-package com.xxx.test.api.nrt.apinrt.campaignExecutor.model;
+package com.xxx.test.api.nrt.apinrt.model.context;
 
-import com.xxx.test.api.nrt.apinrt.model.TestGroup;
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroup;
 import java.util.ArrayList;
 import java.util.List;
 

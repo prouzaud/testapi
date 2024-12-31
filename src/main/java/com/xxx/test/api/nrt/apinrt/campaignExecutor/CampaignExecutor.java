@@ -1,18 +1,21 @@
 package com.xxx.test.api.nrt.apinrt.campaignExecutor;
 
-import com.xxx.test.api.nrt.apinrt.model.Campaign;
-import com.xxx.test.api.nrt.apinrt.model.Test;
-import com.xxx.test.api.nrt.apinrt.model.TestGroup;
+import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.ReporterNotifier;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Campaign;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroup;
+import com.xxx.test.api.nrt.apinrt.model.context.CampaignContext;
+import com.xxx.test.api.nrt.apinrt.model.context.TestContext;
+import com.xxx.test.api.nrt.apinrt.model.context.TestGroupContext;
 import org.springframework.stereotype.Component;
-import com.xxx.test.api.nrt.apinrt.campaignExecutor.model.*;
 
 @Component
 public class CampaignExecutor {
 
-    final Reporter reporter;
+    final ReporterNotifier reporter;
     final ApiCaller apiCaller;
 
-    public CampaignExecutor(Reporter reporter, ApiCaller apiCaller) {
+    public CampaignExecutor(ReporterNotifier reporter, ApiCaller apiCaller) {
         this.reporter = reporter;
         this.apiCaller = apiCaller;
     }
@@ -35,8 +38,8 @@ public class CampaignExecutor {
     private TestContext executeTest(TestGroupContext testGroupContext, Test test) {
         TestContext testContext = new TestContext(testGroupContext, test);
         reporter.testStarted(testContext);
-        apiCaller.call(testContext);
-        reporter.testFinished(testContext);
+        String body = apiCaller.call(testContext);
+        reporter.testFinished(testContext, body);
         return testContext;
     }
 }

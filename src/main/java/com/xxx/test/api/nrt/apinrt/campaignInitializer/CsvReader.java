@@ -1,8 +1,9 @@
 package com.xxx.test.api.nrt.apinrt.campaignInitializer;
 
 import com.xxx.test.api.nrt.apinrt.campaignInitializer.exceptions.TestReaderException;
-import com.xxx.test.api.nrt.apinrt.model.CallSettings;
-import com.xxx.test.api.nrt.apinrt.model.Test;
+import com.xxx.test.api.nrt.apinrt.model.configuration.CallSettings;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -15,6 +16,9 @@ import java.util.List;
 @Component
 public class CsvReader {
 
+    @Value("${apiNrt.inputs.csvSeparator}")
+    private String csvSeparator;
+
     public List<Test> createTestsFromCsv(File csvFile) {
 
         List<Test> tests = new ArrayList<>();
@@ -25,16 +29,19 @@ public class CsvReader {
 
             int lineNumber = 2;
             while ((line = readline(reader, csvFile, lineNumber)) != null) {
-                String[] data = line.split(",");
-                Test test = buildTest(data, csvFile, lineNumber);
-                tests.add(test);
+                createTestFromCsvLine(csvFile, line, lineNumber, tests);
                 lineNumber++;
             }
         } catch (IOException e) {
             throw new TestReaderException("Unable to open the CSV file " + csvFile.getAbsolutePath() + ": ", e);
         }
-
         return tests;
+    }
+
+    private void createTestFromCsvLine(File csvFile, String line, int lineNumber, List<Test> tests) {
+        String[] data = line.split(csvSeparator);
+        Test test = buildTest(data, csvFile, line, lineNumber);
+        tests.add(test);
     }
 
     private String readline(BufferedReader reader, File csvFile, int lineNumber) {
@@ -49,11 +56,11 @@ public class CsvReader {
         readline(reader, csvFile, 1);
     }
 
-    private Test buildTest(String[] data, File csvFile, int lineNumber) {
+    private Test buildTest(String[] data, File csvFile, String csvLine, int lineNumber) {
         checkLine(data, csvFile, lineNumber);
         int httpCode = parseInt(data[4], csvFile, lineNumber);
         CallSettings callSettings = new CallSettings(data[0]+data[1], data[2], data[3]);
-        return new Test(csvFile.getAbsolutePath(), lineNumber, callSettings, httpCode, data[5]);
+        return new Test(csvFile.getAbsolutePath(), lineNumber, data, callSettings, httpCode, data[5]);
     }
 
     private int parseInt(String code, File csvFile, int lineNumber) {

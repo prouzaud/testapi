@@ -2,7 +2,7 @@ package com.xxx.test.api.nrt.apinrt;
 
 import com.xxx.test.api.nrt.apinrt.campaignExecutor.CampaignExecutor;
 import com.xxx.test.api.nrt.apinrt.campaignInitializer.CampaignInitializer;
-import com.xxx.test.api.nrt.apinrt.model.Campaign;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Campaign;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

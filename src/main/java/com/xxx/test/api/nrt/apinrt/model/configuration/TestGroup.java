@@ -1,4 +1,4 @@
-package com.xxx.test.api.nrt.apinrt.model;
+package com.xxx.test.api.nrt.apinrt.model.configuration;
 
 import java.io.File;
 import java.util.ArrayList;

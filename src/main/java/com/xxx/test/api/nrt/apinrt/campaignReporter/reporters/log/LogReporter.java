@@ -1,19 +1,21 @@
-package com.xxx.test.api.nrt.apinrt.campaignReporter;
+package com.xxx.test.api.nrt.apinrt.campaignReporter.reporters.log;
 
-import com.xxx.test.api.nrt.apinrt.campaignExecutor.Reporter;
-import com.xxx.test.api.nrt.apinrt.campaignExecutor.model.*;
-import com.xxx.test.api.nrt.apinrt.model.Test;
-import com.xxx.test.api.nrt.apinrt.model.TestGroup;
+import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.ReportPlugin;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroup;
+import com.xxx.test.api.nrt.apinrt.model.context.CampaignContext;
+import com.xxx.test.api.nrt.apinrt.model.context.TestContext;
+import com.xxx.test.api.nrt.apinrt.model.context.TestGroupContext;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
 @Component
-public class PrintReporter implements Reporter {
+public class LogReporter implements ReportPlugin {
     
     private final ReportLogger logger;
 
-    public PrintReporter(ReportLogger logger) {
+    public LogReporter(ReportLogger logger) {
         this.logger = logger;
     }
 
@@ -33,7 +35,6 @@ public class PrintReporter implements Reporter {
             String failedCSVs = formatFailedCsvNames(campaignContext);
             logger.logError(0,"Failed CSV files: " + failedCSVs);
         }
-        logger.logMessage(0,"Its status is: " +formatStatus(campaignContext.isStatus()));
         logger.closeLog();
     }
 
@@ -84,7 +85,7 @@ public class PrintReporter implements Reporter {
     }
 
     @Override
-    public void testFinished(TestContext testContext) {
+    public void testFinished(TestContext testContext, String body) {
         logger.logMessage(4,"The test execution is finished.");
         logger.logMessage(4,"Its status is: " +formatStatus(testContext.isStatus()));
         logger.logMessage(2,"----------------------------------");
@@ -120,13 +121,13 @@ public class PrintReporter implements Reporter {
     @Override
     public void expectedStatusKo(TestContext testContext) {
         int expectedStatusCode = testContext.getTest().expectedStatus();
-        int foundStatusCode = testContext.getTest().expectedStatus();
+        int foundStatusCode = testContext.getHttpStatusCode();
         logger.logError(6,"The status doesn't match with the expected one: expected=" + expectedStatusCode + ", found="+foundStatusCode);
     }
 
     @Override
     public void expectedBodyOk(TestContext testContext, String body) {
-        logger.logMessage(6,"The status matches with the expected one.");
+        logger.logMessage(6,"The body matches with the expected one.");
     }
 
     @Override

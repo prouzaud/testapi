@@ -1,9 +1,9 @@
 package com.xxx.test.api.nrt.apinrt.campaignInitializer;
 
 import com.xxx.test.api.nrt.apinrt.campaignInitializer.exceptions.TestReaderException;
-import com.xxx.test.api.nrt.apinrt.model.Campaign;
-import com.xxx.test.api.nrt.apinrt.model.Test;
-import com.xxx.test.api.nrt.apinrt.model.TestGroup;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Campaign;
+import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

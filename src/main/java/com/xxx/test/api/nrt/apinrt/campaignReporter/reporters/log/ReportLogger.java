@@ -1,4 +1,4 @@
-package com.xxx.test.api.nrt.apinrt.campaignReporter;
+package com.xxx.test.api.nrt.apinrt.campaignReporter.reporters.log;
 
 import com.xxx.test.api.nrt.apinrt.campaignReporter.exceptions.ReportException;
 import org.springframework.beans.factory.annotation.Value;
@@ -96,5 +96,4 @@ public class ReportLogger {
             throw new ReportException("Unable to close the log file ("+reportPath.getAbsolutePath()+")", e);
         }
     }
-
 }
