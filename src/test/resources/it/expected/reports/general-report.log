@@ -1,0 +1,112 @@
+2024-12-31 17:37:34 | MESSAGE | The campaign execution starts.
+2024-12-31 17:37:34 | MESSAGE | 	A testGroup execution starts.
+2024-12-31 17:37:34 | MESSAGE | 		Details: Test group name: success_with_all_methods.csv
+2024-12-31 17:37:34 | MESSAGE | 		Details: related CSV file: C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv, line=2, csvData=[Ljava.lang.String;@6eaa6b0c, callSettings=CallSettings[url=http://127.0.0.1:57575/test/get/simple, verb=GET, body=], expectedStatus=200, expectedResult={"status":"success"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/get/simple, verb=GET, body=]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 200
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"status":"success"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv, line=3, csvData=[Ljava.lang.String;@4afcae7, callSettings=CallSettings[url=http://127.0.0.1:57575/test/put, verb=PUT, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":208}], expectedStatus=208, expectedResult={"response":"OK"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/put, verb=PUT, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":208}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 208
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"response":"OK"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv, line=4, csvData=[Ljava.lang.String;@6cd2cb2, callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":300}], expectedStatus=300, expectedResult={"response":"OK"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":300}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 300
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"response":"OK"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv, line=5, csvData=[Ljava.lang.String;@3a2bb026, callSettings=CallSettings[url=http://127.0.0.1:57575/test/delete, verb=DELETE, body=], expectedStatus=200, expectedResult={"status":"success"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/delete, verb=DELETE, body=]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 200
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"status":"success"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 		The testGroup execution is finished (success_with_all_methods.csv).
+2024-12-31 17:37:34 | ERROR   | 		The CSV file processing has failed!
+2024-12-31 17:37:34 | ERROR   | 		Lines in failure: 2, 3, 4, 5
+2024-12-31 17:37:34 | MESSAGE | 	==================================
+2024-12-31 17:37:34 | MESSAGE | 	A testGroup execution starts.
+2024-12-31 17:37:34 | MESSAGE | 		Details: Test group name: errors.csv
+2024-12-31 17:37:34 | MESSAGE | 		Details: related CSV file: C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\external\errors.csv
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\external\errors.csv, line=2, csvData=[Ljava.lang.String;@7645e64, callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404}], expectedStatus=404, expectedResult={"response":"must fail"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 404
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"response":"must fail"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\external\errors.csv, line=3, csvData=[Ljava.lang.String;@7de6549d, callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400}], expectedStatus=400, expectedResult={"response":"must fail"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 400
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"response":"must fail"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\external\errors.csv, line=4, csvData=[Ljava.lang.String;@12214f2f, callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}], expectedStatus=500, expectedResult={"response":"must fail"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 500
+2024-12-31 17:37:34 | ERROR   | 						The body doesn't match with the expected one.
+2024-12-31 17:37:34 | ERROR   | 						Received body:
+2024-12-31 17:37:34 | ERROR   | 							{"response":"must fail"}
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: FAILURE
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 			A test execution starts.
+2024-12-31 17:37:34 | MESSAGE | 				Details: Test[filePath=C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\external\errors.csv, line=5, csvData=[Ljava.lang.String;@756c67cd, callSettings=CallSettings[url=http://127.0.0.1:57575/test/unexpected, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}], expectedStatus=404, expectedResult={"response":"must fail"}]
+2024-12-31 17:37:34 | MESSAGE | 					An API call starts.
+2024-12-31 17:37:34 | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/unexpected, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}]
+2024-12-31 17:37:34 | MESSAGE | 						The API call has succeed.
+2024-12-31 17:37:34 | MESSAGE | 						The status matches with the expected one: 404
+2024-12-31 17:37:34 | MESSAGE | 						The body matches with the expected one.
+2024-12-31 17:37:34 | MESSAGE | 				The test execution is finished.
+2024-12-31 17:37:34 | MESSAGE | 				Its status is: SUCCESS
+2024-12-31 17:37:34 | MESSAGE | 		----------------------------------
+2024-12-31 17:37:34 | MESSAGE | 		The testGroup execution is finished (errors.csv).
+2024-12-31 17:37:34 | ERROR   | 		The CSV file processing has failed!
+2024-12-31 17:37:34 | ERROR   | 		Lines in failure: 2, 3, 4
+2024-12-31 17:37:34 | MESSAGE | 	==================================
+2024-12-31 17:37:34 | MESSAGE | The campaign execution is finished.
+2024-12-31 17:37:34 | ERROR   | The campaign has failed!
+2024-12-31 17:37:34 | ERROR   | Failed CSV files: success_with_all_methods.csv, errors.csv

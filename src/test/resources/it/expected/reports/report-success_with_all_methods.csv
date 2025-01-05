@@ -1,0 +1,9 @@
+Line numberURL Prefix,URL Suffix,HTTP verb	,HTTP Body,Expected HTTP status,Expected HTTP response,CommentTest StatusHTTP codecall durationHTTP body
+2|http://127.0.0.1:57575/test/|get/simple|GET||200|{"status":"success"}|test get sans body|FAILURE|200|4|{"status":"success"}|"
+"
+3|http://127.0.0.1:57575/test/|put|PUT|{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":208}|208|{"response":"OK"}|test put|FAILURE|208|3|{"response":"OK"}|"
+"
+4|http://127.0.0.1:57575/test/|post|POST|{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":300}|300|{"response":"OK"}|Test post|FAILURE|300|12|{"response":"OK"}|"
+"
+5|http://127.0.0.1:57575/test/|delete|DELETE||200|{"status":"success"}|test delete|FAILURE|200|2|{"status":"success"}|"
+"

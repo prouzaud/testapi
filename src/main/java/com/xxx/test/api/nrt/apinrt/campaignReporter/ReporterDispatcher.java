@@ -31,7 +31,6 @@ public class ReporterDispatcher implements ReporterNotifier {
     @Override
     public void testGroupStarted(TestGroupContext testGroupContext) {
         pluginsEngine.dispatchCall("testGroupStarted", testGroupContext);
-
     }
 
     @Override
@@ -87,5 +86,10 @@ public class ReporterDispatcher implements ReporterNotifier {
     @Override
     public void expectedBodyKo(TestContext testContext, String body) {
         pluginsEngine.dispatchCall("expectedBodyKo", testContext, body);
+    }
+
+    @Override
+    public void notifySpecificationError(TestContext testContext, String message) {
+        pluginsEngine.dispatchCall("notifySpecificationError", testContext, message);
     }
 }

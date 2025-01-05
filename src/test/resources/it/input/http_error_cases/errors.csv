@@ -1,0 +1,5 @@
+URL Prefix;URL Suffix;Method;HTTP body;Expected HTTP status;Expected response;Comment
+http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404};404;{"response":"must fail"};Test post
+http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400};400;{"response":"must fail"};Test post
+http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500};500;{"response":"must fail"};Test post
+http://127.0.0.1:57575/test/;unexpected;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500};404;{"timestamp":"#REGEX(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+\-]\d{2}:\d{2})#","status":404,"error":"Not Found","path":"/test/unexpected"};Test post

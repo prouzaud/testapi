@@ -120,7 +120,7 @@ public class LogReporter implements ReportPlugin {
 
     @Override
     public void expectedStatusKo(TestContext testContext) {
-        int expectedStatusCode = testContext.getTest().expectedStatus();
+        String expectedStatusCode = testContext.getTest().expectedStatus();
         int foundStatusCode = testContext.getHttpStatusCode();
         logger.logError(6,"The status doesn't match with the expected one: expected=" + expectedStatusCode + ", found="+foundStatusCode);
     }
@@ -139,5 +139,10 @@ public class LogReporter implements ReportPlugin {
 
     private String formatStatus(boolean status) {
         return status ? "SUCCESS" : "FAILURE";
+    }
+
+    @Override
+    public void notifySpecificationError(TestContext testContext, String message) {
+        logger.logError(7,"[WARNING] the specified expected status code(s) can't be fully exploited: " + message);
     }
 }

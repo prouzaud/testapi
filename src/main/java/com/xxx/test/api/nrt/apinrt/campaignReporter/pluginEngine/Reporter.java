@@ -26,4 +26,6 @@ public interface Reporter  {
     default void expectedStatusKo(TestContext testContext) {}
     default void expectedBodyOk(TestContext testContext, String body) {}
     default void expectedBodyKo(TestContext testContext, String body) {}
+
+    default void notifySpecificationError(TestContext testContext, String message) {}
 }

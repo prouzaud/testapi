@@ -5,6 +5,6 @@ public record Test(
     int line,
     String[] csvData,
     CallSettings callSettings,
-    int expectedStatus,
+    String expectedStatus,
     String expectedResult
 ) {}

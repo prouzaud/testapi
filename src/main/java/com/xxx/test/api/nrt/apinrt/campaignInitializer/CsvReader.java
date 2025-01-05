@@ -58,17 +58,8 @@ public class CsvReader {
 
     private Test buildTest(String[] data, File csvFile, String csvLine, int lineNumber) {
         checkLine(data, csvFile, lineNumber);
-        int httpCode = parseInt(data[4], csvFile, lineNumber);
         CallSettings callSettings = new CallSettings(data[0]+data[1], data[2], data[3]);
-        return new Test(csvFile.getAbsolutePath(), lineNumber, data, callSettings, httpCode, data[5]);
-    }
-
-    private int parseInt(String code, File csvFile, int lineNumber) {
-        try {
-            return Integer.parseInt(code);
-        } catch (Exception e) {
-            throw new TestReaderException("The integer value must be a positive (>0) integer, "+ code +" found." + csvFile.getAbsolutePath() + "(line "+ lineNumber +"): ", e);
-        }
+        return new Test(csvFile.getAbsolutePath(), lineNumber, data, callSettings, data[4], data[5]);
     }
 
     private void checkLine(String[] data, File csvFile, int lineNumber) {

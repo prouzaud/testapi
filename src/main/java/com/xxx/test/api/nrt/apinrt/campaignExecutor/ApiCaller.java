@@ -1,12 +1,13 @@
 package com.xxx.test.api.nrt.apinrt.campaignExecutor;
 
+import com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.BodyChecker;
+import com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.StatusCodeChecker;
 import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.ReporterNotifier;
 import com.xxx.test.api.nrt.apinrt.model.context.TestContext;
-import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.Reporter;
 import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.NoOpResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
@@ -16,12 +17,17 @@ import java.time.temporal.ChronoUnit;
 @Component
 public class ApiCaller {
 
-    RestTemplate restTemplate = new RestTemplate();
-
+    final private RestTemplate restTemplate;
     final private ReporterNotifier reporter;
+    final private BodyChecker bodyChecker;
+    final private StatusCodeChecker statusCodeChecker;
 
-    public ApiCaller(ReporterNotifier reporter) {
+    public ApiCaller(ReporterNotifier reporter, BodyChecker bodyChecker, StatusCodeChecker statusCodeChecker) {
         this.reporter = reporter;
+        this.bodyChecker = bodyChecker;
+        this.statusCodeChecker = statusCodeChecker;
+        this.restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new NoOpResponseErrorHandler());
     }
 
     public String call(TestContext testContext) {
@@ -40,7 +46,6 @@ public class ApiCaller {
                 updateContextOnError(testContext);
                 return "<no response>";
             }
-
         }
     }
 
@@ -48,24 +53,35 @@ public class ApiCaller {
         testContext.setHttpStatusCode(0);
         testContext.setStatus(false);
     }
+
     private ResponseEntity<String> performsCall(TestContext testContext, HttpMethod method) {
         Test test = testContext.getTest();
-        reporter.apiCallStarted(testContext);
         var settings = test.callSettings();
         ResponseEntity<String> result = null;
+
+        reporter.apiCallStarted(testContext);
         try {
             var beginInstant = LocalDateTime.now();
-            result = restTemplate.exchange(
-                settings.url(),
-                method,
-                buildBody(settings.body()),
-                String.class);
+            result = performCall(testContext, method);
             var duration = ChronoUnit.MILLIS.between(beginInstant, LocalDateTime.now());
             testContext.setDurationInMilliseconds(duration);
             reporter.apiCallDone(testContext);
         } catch (Exception exception) {
             reporter.apiCallFails(testContext, exception);
         }
+        return result;
+    }
+
+    private ResponseEntity<String> performCall(TestContext testContext, HttpMethod method) {
+        var beginInstant = LocalDateTime.now();
+        var settings = testContext.getTest().callSettings();
+        var result = restTemplate.exchange(
+                testContext.getTest().callSettings().url(),
+                method,
+                buildBody(settings.body()),
+                String.class);
+        var duration = ChronoUnit.MILLIS.between(beginInstant, LocalDateTime.now());
+        testContext.setDurationInMilliseconds(duration);
         return result;
     }
 
@@ -89,13 +105,13 @@ public class ApiCaller {
     private void performAssertions(TestContext testContext, ResponseEntity<String> responseEntity) {
 
         testContext.setHttpStatusCode(responseEntity.getStatusCode().value());
-        if (testContext.getTest().expectedStatus() == testContext.getHttpStatusCode()) {
+        if (statusCodeChecker.matches(reporter, testContext, testContext.getTest().expectedStatus(), testContext.getHttpStatusCode())) {
             reporter.expectedStatusOk(testContext);
         } else {
             reporter.expectedStatusKo(testContext);
             testContext.setStatus(false);
         }
-        if (testContext.getTest().expectedResult().equals(responseEntity.getBody())) {
+        if (bodyChecker.matches(testContext.getTest().expectedResult(),responseEntity.getBody())) {
             reporter.expectedBodyOk(testContext, responseEntity.getBody());
         } else {
             reporter.expectedBodyKo(testContext, responseEntity.getBody());

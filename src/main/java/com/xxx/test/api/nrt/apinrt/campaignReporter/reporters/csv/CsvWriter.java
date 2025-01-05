@@ -13,7 +13,8 @@ import java.nio.file.Paths;
 
 @Component
 public class CsvWriter {
-
+    @Value("${apiNrt.csvReports.csvSeparator}")
+    private String csvSeparator;
     @Value("${apiNrt.reportPath}")
     private String reportsRootPath;
     @Value("${apiNrt.rootPath}")
@@ -49,11 +50,16 @@ public class CsvWriter {
   }
 
   private String formatHeader() {
-        return  "Line number" +
-                "URL Prefix,URL Suffix,HTTP verb	,HTTP Body,Expected HTTP status,Expected HTTP response,Comment" +
-                "Test Status" +
-                "HTTP code" +
-                "call duration" +
+        return  "Line number" + csvSeparator+
+                "URL Prefix"+ csvSeparator +"URL Suffix," +
+                "HTTP verb"+ csvSeparator +"URL Suffix," +
+                "HTTP Body"+ csvSeparator +"URL Suffix," +
+                "Expected HTTP status"+ csvSeparator +"URL Suffix," +
+                "Expected HTTP response"+ csvSeparator +"URL Suffix," +
+                "Comment"+ csvSeparator +"URL Suffix," +
+                "Test Status"+ csvSeparator +"URL Suffix," +
+                "HTTP code"+ csvSeparator +"URL Suffix," +
+                "call duration"+ csvSeparator +"URL Suffix," +
                 "HTTP body";
   }
 

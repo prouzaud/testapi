@@ -1,2 +1,0 @@
-URL Prefix;URL Suffix;Method;HTTP body;Expected HTTP status;Expected response;Comment
-http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":300};300;{"response":"OK"};Test post
