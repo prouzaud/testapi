@@ -1,5 +1,5 @@
 URL Prefix;URL Suffix;Method;HTTP body;Expected HTTP status;Expected response;Comment
-http://127.0.0.1:57575/test/;get/simple;GET;;200;{"status":"success"};test get sans body
-http://127.0.0.1:57575/test/;put;PUT;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":208};208;{"response":"OK"};test put
-http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"OK\"}","expectedHttpStatus":300};300;{"response":"OK"};Test post
-http://127.0.0.1:57575/test/;delete;DELETE;;200;{"status":"success"};test delete
+http://127.0.0.1:57575/test/;get;GET;;200;{"status":"success"};Test get
+http://127.0.0.1:57575/test/;delete;DELETE;;200;{"status":"success"};Test delete
+http://127.0.0.1:57575/test/;post;POST;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200};200;{"response":"ok"};Test post
+http://127.0.0.1:57575/test/;put;PUT;{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200};200;{"response":"ok"};Test put

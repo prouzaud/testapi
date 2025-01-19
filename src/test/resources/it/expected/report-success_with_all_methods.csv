@@ -1,0 +1,5 @@
+Line number|URL Prefix|URL Suffix,HTTP verb|URL Suffix,HTTP Body|URL Suffix,Expected HTTP status|URL Suffix,Expected HTTP response|URL Suffix,Comment|URL Suffix,Test Status|URL Suffix,HTTP code|URL Suffix,call duration|URL Suffix,HTTP body
+2|http://127.0.0.1:57575/test/|get|GET||200|{"status":"success"}|Test get|SUCCESS|200|######|{"status":"success"}
+3|http://127.0.0.1:57575/test/|delete|DELETE||200|{"status":"success"}|Test delete|SUCCESS|200|######|{"status":"success"}
+4|http://127.0.0.1:57575/test/|post|POST|{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}|200|{"response":"ok"}|Test post|SUCCESS|200|######|{"response":"ok"}
+5|http://127.0.0.1:57575/test/|put|PUT|{"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}|200|{"response":"ok"}|Test put|SUCCESS|200|######|{"response":"ok"}

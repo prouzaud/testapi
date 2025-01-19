@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/test")
 public class TestController {
 
-    @GetMapping("/get/simple")
+    @GetMapping("/get")
     public String getWithBody() {
         return "{\"status\":\"success\"}";
     }

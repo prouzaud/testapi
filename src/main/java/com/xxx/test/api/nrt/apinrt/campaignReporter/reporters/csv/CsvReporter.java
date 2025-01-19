@@ -51,9 +51,7 @@ public class CsvReporter implements ReportPlugin {
                 csvSeparator +
                 testContext.getDurationInMilliseconds() +
                 csvSeparator +
-                body.replaceAll(Pattern.quote("\n"), " ") +
-                csvSeparator +
-                csvNewLine;
+                body.replaceAll(Pattern.quote("\n"), " ");
     }
 
 }

@@ -1,6 +1,6 @@
 package com.xxx.test.api.nrt.apinrt.campaignExecutor;
 
-import com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.BodyChecker;
+import com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.TextChecker;
 import com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.StatusCodeChecker;
 import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.ReporterNotifier;
 import com.xxx.test.api.nrt.apinrt.model.context.TestContext;
@@ -19,12 +19,12 @@ public class ApiCaller {
 
     final private RestTemplate restTemplate;
     final private ReporterNotifier reporter;
-    final private BodyChecker bodyChecker;
+    final private TextChecker textChecker;
     final private StatusCodeChecker statusCodeChecker;
 
-    public ApiCaller(ReporterNotifier reporter, BodyChecker bodyChecker, StatusCodeChecker statusCodeChecker) {
+    public ApiCaller(ReporterNotifier reporter, TextChecker textChecker, StatusCodeChecker statusCodeChecker) {
         this.reporter = reporter;
-        this.bodyChecker = bodyChecker;
+        this.textChecker = textChecker;
         this.statusCodeChecker = statusCodeChecker;
         this.restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(new NoOpResponseErrorHandler());
@@ -111,7 +111,7 @@ public class ApiCaller {
             reporter.expectedStatusKo(testContext);
             testContext.setStatus(false);
         }
-        if (bodyChecker.matches(testContext.getTest().expectedResult(),responseEntity.getBody())) {
+        if (textChecker.matches(testContext.getTest().expectedResult(),responseEntity.getBody())) {
             reporter.expectedBodyOk(testContext, responseEntity.getBody());
         } else {
             reporter.expectedBodyKo(testContext, responseEntity.getBody());

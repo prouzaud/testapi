@@ -1,0 +1,95 @@
+###### | MESSAGE | The campaign execution starts.
+###### | MESSAGE | 	A testGroup execution starts.
+###### | MESSAGE | 		Details: Test group name: success_with_all_methods.csv
+###### | MESSAGE | 		Details: related CSV file: C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\success_with_all_methods.csv
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 2]: {, csvData=[http://127.0.0.1:57575/test/, get, GET, , 200, {"status":"success"}, Test get], callSettings=CallSettings[url=http://127.0.0.1:57575/test/get, verb=GET, body=], expectedStatus='200', expectedResult='{"status":"success"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/get, verb=GET, body=]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 200
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 3]: {, csvData=[http://127.0.0.1:57575/test/, delete, DELETE, , 200, {"status":"success"}, Test delete], callSettings=CallSettings[url=http://127.0.0.1:57575/test/delete, verb=DELETE, body=], expectedStatus='200', expectedResult='{"status":"success"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/delete, verb=DELETE, body=]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 200
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 4]: {, csvData=[http://127.0.0.1:57575/test/, post, POST, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}, 200, {"response":"ok"}, Test post], callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}], expectedStatus='200', expectedResult='{"response":"ok"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 200
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 5]: {, csvData=[http://127.0.0.1:57575/test/, put, PUT, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}, 200, {"response":"ok"}, Test put], callSettings=CallSettings[url=http://127.0.0.1:57575/test/put, verb=PUT, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}], expectedStatus='200', expectedResult='{"response":"ok"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/put, verb=PUT, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"ok\"}","expectedHttpStatus":200}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 200
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 		The testGroup execution is finished (success_with_all_methods.csv).
+###### | MESSAGE | 		The CSV file processing has succeed (0 failure))
+###### | MESSAGE | 	==================================
+###### | MESSAGE | 	A testGroup execution starts.
+###### | MESSAGE | 		Details: Test group name: errors.csv
+###### | MESSAGE | 		Details: related CSV file: C:\Users\rouza\IdeaProjects\api-nrt\src\test\resources\it\input\http_error_cases\errors.csv
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 2]: {, csvData=[http://127.0.0.1:57575/test/, post, POST, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404}, 404, {"response":"must fail"}, Test post], callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404}], expectedStatus='404', expectedResult='{"response":"must fail"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":404}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 404
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 3]: {, csvData=[http://127.0.0.1:57575/test/, post, POST, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400}, 400, {"response":"must fail"}, Test post], callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400}], expectedStatus='400', expectedResult='{"response":"must fail"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":400}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 400
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 4]: {, csvData=[http://127.0.0.1:57575/test/, post, POST, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}, 500, {"response":"must fail"}, Test post], callSettings=CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}], expectedStatus='500', expectedResult='{"response":"must fail"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/post, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 500
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 			A test execution starts.
+###### | MESSAGE | 				Details: Test: [line 5]: {, csvData=[http://127.0.0.1:57575/test/, unexpected, POST, {"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}, 404, {"timestamp":"#REGEX(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+\-]\d{2}:\d{2})#","status":404,"error":"Not Found","path":"/test/unexpected"}, Test post], callSettings=CallSettings[url=http://127.0.0.1:57575/test/unexpected, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}], expectedStatus='404', expectedResult='{"timestamp":"#REGEX(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}[+\-]\d{2}:\d{2})#","status":404,"error":"Not Found","path":"/test/unexpected"}'}
+###### | MESSAGE | 					An API call starts.
+###### | MESSAGE | 						Details: CallSettings[url=http://127.0.0.1:57575/test/unexpected, verb=POST, body={"expectedDurationInMilliseconds":10,"expectedPayload":"{\"response\":\"must fail\"}","expectedHttpStatus":500}]
+###### | MESSAGE | 						The API call has succeed.
+###### | MESSAGE | 						The status matches with the expected one: 404
+###### | MESSAGE | 						The body matches with the expected one.
+###### | MESSAGE | 				The test execution is finished.
+###### | MESSAGE | 				Its status is: SUCCESS
+###### | MESSAGE | 		----------------------------------
+###### | MESSAGE | 		The testGroup execution is finished (errors.csv).
+###### | MESSAGE | 		The CSV file processing has succeed (0 failure))
+###### | MESSAGE | 	==================================
+###### | MESSAGE | The campaign execution is finished.
+###### | MESSAGE | The campaign has succeed (0 failure))
