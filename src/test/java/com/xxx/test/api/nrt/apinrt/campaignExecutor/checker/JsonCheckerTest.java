@@ -13,9 +13,17 @@ public class JsonCheckerTest {
     @MethodSource("provideJsonsToCompareCases")
     void testMatches(String expectedJsonText, String actualJsonText, boolean expectedResult) {
 
-        JsonChecker jsonChecker = new JsonChecker();
+        JsonChecker jsonChecker = prepareJsonChecker();
         boolean foundResult = jsonChecker.matches(expectedJsonText, actualJsonText);
         assertThat(foundResult).isEqualTo(expectedResult);
+    }
+
+    private JsonChecker prepareJsonChecker() {
+        TextChecker  textChecker;
+        textChecker = new TextChecker();
+        textChecker.regexBeginSymbol = "#REGEX(";
+        textChecker.regexEndSymbol = ")#";
+        return new JsonChecker(textChecker);
     }
 
     static Stream<Arguments> provideJsonsToCompareCases() {
@@ -23,17 +31,18 @@ public class JsonCheckerTest {
                 simpleObjectCases(),
                 nestedObjectCases());
         result = Stream.concat(result, simpleArrayCases());
+        result = Stream.concat(result, regexCases());
         return result;
     }
 
     static Stream<Arguments> simpleObjectCases() {
          return Stream.of(
                  Arguments.of("""
-                        {"a":[]}
+                        {"a":["X", "Y"]}
                         """, """
-                        {"a":["X"]}
-                        """, false),
-                Arguments.of("""
+                        {"a":["Y", "X"]}
+                        """, true),
+                 Arguments.of("""
                         {}
                         """, """
                         {}
@@ -73,7 +82,6 @@ public class JsonCheckerTest {
                         """, """
                         {"b":2, "a":1}
                         """, true),
-
                  Arguments.of("""
                         {"a":1}
                         """, """
@@ -305,4 +313,40 @@ public class JsonCheckerTest {
                         """, false)
         );
     }
+
+    static Stream<Arguments> regexCases() {
+        return Stream.of(
+                Arguments.of("""
+                        {"a":"#REGEX(.{3})#"}
+                        """, """
+                        {"a":"XXX"}
+                       """, true),
+                Arguments.of("""
+                        {"a":"---#REGEX(.{3})#---"}
+                        """, """
+                        {"a":"---XXX---"}
+                       """, true),
+                Arguments.of("""
+                        {"a":"---#REGEX(.{3})#---#REGEX(.{4})#---"}
+                        """, """
+                        {"a":"---XXX---YYYY---"}
+                       """, true),
+                Arguments.of("""
+                        {"a":"#REGEX(.{3})#"}
+                        """, """
+                        {"a":"XX"}
+                       """, false),
+                Arguments.of("""
+                        {"a":"#REGEX(.{3})#"}
+                        """, """
+                        {"a":"XXXX"}
+                       """, false),
+                Arguments.of("""
+                        {"a":"---#REGEX(.{3})#---"}
+                        """, """
+                        {"a":"---#REGEX(.{3})#---"}
+                        """, false)
+            );
+    }
+
 }

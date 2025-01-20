@@ -16,10 +16,9 @@ import static com.xxx.test.api.nrt.apinrt.campaignExecutor.checker.TokenType.TEX
 public class TextChecker {
 
     @Value("${apiNrt.inputs.regexBegin}")
-    private String regexBeginSymbol;
+    String regexBeginSymbol;
     @Value("${apiNrt.inputs.regexEnd}")
-    private String regexEndSymbol;
-
+    String regexEndSymbol;
 
     public boolean matches(String expectedBody, String actualBody) {
         var pattern = compileExpression(expectedBody);
@@ -30,6 +29,7 @@ public class TextChecker {
     private Pattern compileExpression(String expression) {
         var tokens = splitExpression(expression);
         StringBuilder result = new StringBuilder();
+        result.append("^");
         for (var token : tokens) {
             if (token.type() == TEXT) {
                 String textPattern = Pattern.quote(token.value());
@@ -38,6 +38,7 @@ public class TextChecker {
                 result.append(token.value());
             }
         }
+        result.append("$");
         return Pattern.compile(result.toString());
     }
 
@@ -77,14 +78,5 @@ public class TextChecker {
 
     private String skip(String expression, String symbol) {
         return expression.substring(symbol.length());
-    }
-
-    public static Pattern buildPattern(String prefixFixe, String partieRegex, String suffixFixe) {
-        // On quote préfixe et suffixe, mais on ne touche pas à la partie regex
-        String patternString = Pattern.quote(prefixFixe)
-                + partieRegex
-                + Pattern.quote(suffixFixe);
-
-        return Pattern.compile(patternString);
     }
 }

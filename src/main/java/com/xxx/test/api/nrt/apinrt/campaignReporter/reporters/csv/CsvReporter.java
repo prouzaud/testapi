@@ -15,8 +15,6 @@ public class CsvReporter implements ReportPlugin {
 
     @Value("${apiNrt.csvReports.csvSeparator}")
     private String csvSeparator;
-    @Value("${apiNrt.csvReports.csvNewLine}")
-    private String csvNewLine;
 
     private final CsvWriter csvWriter;
 

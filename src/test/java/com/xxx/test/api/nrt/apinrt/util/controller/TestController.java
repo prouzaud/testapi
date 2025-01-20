@@ -1,6 +1,5 @@
 package com.xxx.test.api.nrt.apinrt.util.controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +23,7 @@ public class TestController {
     }
 
     @DeleteMapping("/delete")
-    public String delete() throws InterruptedException {
+    public String delete() {
         return "{\"status\":\"success\"}";
     }
 

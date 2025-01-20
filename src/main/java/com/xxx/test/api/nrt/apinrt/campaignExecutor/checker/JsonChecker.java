@@ -10,18 +10,21 @@ import java.util.*;
 @Component
 public class JsonChecker {
 
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final List<String> errors = new ArrayList<>();
+    private final TextChecker textChecker;
+    private boolean ignoreMessages = false;
 
-    private boolean isListModeOrdered = true;
-
-    private ObjectMapper objectMapper = new ObjectMapper();
-    private List<String> errors = new ArrayList<>();
+    public JsonChecker(TextChecker textChecker) {
+        this.textChecker = textChecker;
+    }
 
     public boolean matches(String expectedJson, String actualJson) {
 
         final var expectedMap = toMap(expectedJson);
         final var actuelMap = toMap(actualJson);
 
-        var result =  compareNodes(expectedMap, actuelMap, "/");
+        var result =  compareNodes(expectedMap, actuelMap, ".");
         System.out.println(String.join("\n   ", errors));
         return  result;
     }
@@ -81,28 +84,32 @@ public class JsonChecker {
     private boolean compareArrays(Object expected, Object current, String path) {
         List<Object> expectedList = asList(expected);
         List<Object> currentListCopy = new ArrayList<>(asList(current));
-
         List<Integer> currentPositionsFound = new ArrayList<>();
 
         for (int i = 0; i < expectedList.size(); i++) {
             Object expectedItem = expectedList.get(i);
             boolean matchFound = false;
-
-            for (int j = 0; j < currentListCopy.size(); j++) {
-                Object currentItem = currentListCopy.get(j);
-                if (!currentPositionsFound.contains(j) && compareNodes(expectedItem, currentItem, path+"["+i+"]")) {
-                    currentPositionsFound.add(j);
-                    matchFound = true;
-                    break;
-                }
-            }
+            matchFound = isMatchFound(path, currentListCopy, currentPositionsFound, expectedItem, i, matchFound);
             if (!matchFound) {
                 addError(path+"["+i+"]", "Unable to find a matching element in the current array for the element (i starts at position 0, it is the positions in the expected array).");
                 return false;
             }
-
         }
         return checkNoUnexpectedElements(currentPositionsFound, asList(current), path);
+    }
+
+    private boolean isMatchFound(String path, List<Object> currentListCopy, List<Integer> currentPositionsFound, Object expectedItem, int i, boolean matchFound) {
+        this.ignoreMessages=true;
+        for (int j = 0; j < currentListCopy.size(); j++) {
+            Object currentItem = currentListCopy.get(j);
+            if (!currentPositionsFound.contains(j) && compareNodes(expectedItem, currentItem, path +"["+ i +"]")) {
+                currentPositionsFound.add(j);
+                matchFound = true;
+                break;
+            }
+        }
+        this.ignoreMessages=false;
+        return matchFound;
     }
 
     private boolean checkNoUnexpectedElements(List<Integer> currentPositionsFound, List<Object> currentList, String path) {
@@ -139,12 +146,26 @@ public class JsonChecker {
             }
             return current == null;
         } else {
-            if (!expected.equals(current)) {
+            boolean isMatching = compareValues(expected, current);
+            if (!isMatching) {
                 addError(path, "the found value: "+ current+" doesn't match with the expected one: "+expected+".");
             }
-            return expected.equals(current);
+            return isMatching;
         }
     }
+
+    private boolean compareValues(Object expectedValue, Object currentValue) {
+        if (isString(expectedValue) && isString(currentValue)) {
+            return textChecker.matches((String)expectedValue, (String)currentValue);
+        } else {
+            return expectedValue.equals(currentValue);
+        }
+    }
+
+    private boolean isString(Object object) {
+        return object.getClass().equals(String.class);
+    }
+
 
     private Map<String, Object> asMap(Object expected) {
         if (isObject(expected)) {
@@ -192,11 +213,12 @@ public class JsonChecker {
     }
 
     private boolean isConsistantKey(Map<String, Object> map, String key) {
-        return map.get(key)==null;
+        return map.get(key)!=null;
     }
 
     private void addError(String path, String message) {
-        errors.add(path + ": " + message);
+        if (!ignoreMessages) {
+            errors.add(path + ": " + message);
+        }
     }
-
 }
