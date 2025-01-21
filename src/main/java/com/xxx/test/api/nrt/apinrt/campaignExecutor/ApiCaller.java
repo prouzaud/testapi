@@ -55,7 +55,6 @@ public class ApiCaller {
     }
 
     private ResponseEntity<String> performsCall(TestContext testContext, HttpMethod method) {
-        Test test = testContext.getTest();
         ResponseEntity<String> result = null;
 
         reporter.apiCallStarted(testContext);

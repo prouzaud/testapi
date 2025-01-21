@@ -12,7 +12,6 @@ import java.util.*;
 @Component
 public class RepositoryComparator {
 
-    public static final String STATUS_FILE_NAME = "status.txt";
     private final List<String> errors = new ArrayList<>();
 
     public List<String> assertDirectoriesMatch(String expected, String testResult) {
