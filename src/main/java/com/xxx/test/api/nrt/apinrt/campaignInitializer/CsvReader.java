@@ -40,7 +40,7 @@ public class CsvReader {
 
     private void createTestFromCsvLine(File csvFile, String line, int lineNumber, List<Test> tests) {
         String[] data = line.split(csvSeparator);
-        Test test = buildTest(data, csvFile, line, lineNumber);
+        Test test = buildTest(data, csvFile, lineNumber);
         tests.add(test);
     }
 
@@ -56,10 +56,10 @@ public class CsvReader {
         readline(reader, csvFile, 1);
     }
 
-    private Test buildTest(String[] data, File csvFile, String csvLine, int lineNumber) {
+    private Test buildTest(String[] data, File csvFile, int lineNumber) {
         checkLine(data, csvFile, lineNumber);
         CallSettings callSettings = new CallSettings(data[0]+data[1], data[2], data[3]);
-        return new Test(csvFile.getAbsolutePath(), lineNumber, data, callSettings, data[4], data[5]);
+        return new Test(csvFile.getAbsolutePath(), lineNumber, data, callSettings, data[4], data[5], "(default)");
     }
 
     private void checkLine(String[] data, File csvFile, int lineNumber) {

@@ -1,5 +1,6 @@
 package com.xxx.test.api.nrt.apinrt.campaignReporter.reporters.csv;
 
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroupType;
 import com.xxx.test.api.nrt.apinrt.model.context.TestContext;
 import com.xxx.test.api.nrt.apinrt.model.context.TestGroupContext;
 import com.xxx.test.api.nrt.apinrt.campaignReporter.pluginEngine.ReportPlugin;
@@ -10,8 +11,10 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+//Not Thread safe.
 @Component
 public class CsvReporter implements ReportPlugin {
+
 
     @Value("${apiNrt.csvReports.csvSeparator}")
     private String csvSeparator;
@@ -24,18 +27,24 @@ public class CsvReporter implements ReportPlugin {
 
     @Override
     public void testGroupStarted(TestGroupContext testGroupContext) {
-        csvWriter.initializeWriter(testGroupContext.getTestGroup().filePath());
+        if (testGroupContext.getTestGroup().type() == TestGroupType.CSV) {
+            csvWriter.initializeWriter(testGroupContext.getTestGroup().filePath());
+        }
     }
 
     @Override
     public void testGroupFinished(TestGroupContext testGroupContext) {
-        csvWriter.closeCsv();
+        if (testGroupContext.getTestGroup().type() == TestGroupType.CSV) {
+            csvWriter.closeCsv();
+        }
     }
 
     @Override
     public void testFinished(TestContext testContext, String body) {
-        String line = buildCsvReportLine(testContext, body);
-        csvWriter.writeLine(line);
+        if (testContext.getTestGroupContext().getTestGroup().type() == TestGroupType.CSV) {
+            String line = buildCsvReportLine(testContext, body);
+            csvWriter.writeLine(line);
+        }
     }
 
     private String buildCsvReportLine(TestContext testContext, String body) {

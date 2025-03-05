@@ -22,7 +22,6 @@ public class CsvWriter {
 
     BufferedWriter writer = null;
 
-    //todo add header
     public void initializeWriter(String csvTestPath)  {
         String path = determineReportPath(csvTestPath);
         new File(path).getParentFile().mkdirs();
@@ -51,15 +50,16 @@ public class CsvWriter {
 
   private String formatHeader() {
         return  "Line number" + csvSeparator+
-                "URL Prefix"+ csvSeparator +"URL Suffix," +
-                "HTTP verb"+ csvSeparator +"URL Suffix," +
-                "HTTP Body"+ csvSeparator +"URL Suffix," +
-                "Expected HTTP status"+ csvSeparator +"URL Suffix," +
-                "Expected HTTP response"+ csvSeparator +"URL Suffix," +
-                "Comment"+ csvSeparator +"URL Suffix," +
-                "Test Status"+ csvSeparator +"URL Suffix," +
-                "HTTP code"+ csvSeparator +"URL Suffix," +
-                "call duration"+ csvSeparator +"URL Suffix," +
+                "URL Prefix"+ csvSeparator +
+                "URL Suffix," + csvSeparator +
+                "HTTP verb"+ csvSeparator +
+                "HTTP Body"+ csvSeparator +
+                "Expected HTTP status"+ csvSeparator +
+                "Expected HTTP response"+ csvSeparator +
+                "Comment"+ csvSeparator +
+                "Test Status"+ csvSeparator +
+                "HTTP code"+ csvSeparator +
+                "call duration"+ csvSeparator +
                 "HTTP body";
   }
 

@@ -8,7 +8,8 @@ public record Test(
     String[] csvData,
     CallSettings callSettings,
     String expectedStatus,
-    String expectedResult
+    String expectedResult,
+    String sheetName
 ) {
 
     @Override

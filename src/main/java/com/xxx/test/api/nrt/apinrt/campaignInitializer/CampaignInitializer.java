@@ -4,6 +4,7 @@ import com.xxx.test.api.nrt.apinrt.campaignInitializer.exceptions.TestReaderExce
 import com.xxx.test.api.nrt.apinrt.model.configuration.Campaign;
 import com.xxx.test.api.nrt.apinrt.model.configuration.Test;
 import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroup;
+import com.xxx.test.api.nrt.apinrt.model.configuration.TestGroupType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -14,15 +15,20 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.xxx.test.api.nrt.apinrt.model.configuration.TestGroupType.CSV;
+import static com.xxx.test.api.nrt.apinrt.model.configuration.TestGroupType.EXCEL;
+
 @Component
 public class CampaignInitializer {
 
     @Autowired
-    public CampaignInitializer(CsvReader csvReader){
+    public CampaignInitializer(CsvReader csvReader, ExcelReader excelReader){
+        this.excelReader = excelReader;
         this.csvReader = csvReader;
     }
 
     private final CsvReader csvReader;
+    private final ExcelReader excelReader;
 
     @Value("${apiNrt.rootPath}")
     private String rootDirPath;
@@ -76,10 +82,16 @@ public class CampaignInitializer {
     }
 
     private void addCsvFile(Campaign campaign, File csvFile) {
-        var testGroup = new TestGroup(csvFile);
+        var testGroup = new TestGroup(csvFile, CSV);
         campaign.testGroups().add(testGroup);
-
         List<Test> tests = csvReader.createTestsFromCsv(csvFile);
+        testGroup.tests().addAll(tests);
+    }
+
+    private void addExcelFile(Campaign campaign, File excelFile) {
+        var testGroup = new TestGroup(excelFile, EXCEL);
+        campaign.testGroups().add(testGroup);
+        List<Test> tests = excelReader.createTestsFromExcel(excelFile);
         testGroup.tests().addAll(tests);
     }
 }
